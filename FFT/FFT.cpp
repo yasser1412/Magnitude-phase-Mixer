@@ -16,7 +16,7 @@ int main()
     long double *outputImag = new long double[inputlength]; //define real part of the fourier transform 
 
     // DFT function
-    for(int k = 0; k<inputlength; k++)
+    for(int k = 0; k<N; k++)
     {
         //output[k] = {0,0};
         
@@ -31,8 +31,8 @@ int main()
 
             //output[k] = {inputArray[k]*CosA, inputArray[k]*SinA};
             
-            outputReal[k] += inputArray[k]*CosA;
-            outputImag[k] += inputArray[k]*SinA;
+            outputReal[k] += inputArray[n]*CosA;
+            outputImag[k] += inputArray[n]*SinA;
         }
     }
     // End of DFT Function
