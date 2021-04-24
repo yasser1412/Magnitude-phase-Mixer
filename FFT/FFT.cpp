@@ -1,40 +1,50 @@
 #include<iostream>
 #include<math.h>
-#include <complex> 
+#include<complex>
+#include<vector> 
 using namespace std;
 #define pi 3.14159265359
 
-int main()
+vector<complex<double>> dft(vector<complex<double>> input)
 {
-    double *inputArray; //array for input data (t-domain)
-    int inputlength; //inputArray length
-    int N = 10000; //number of samples
+    int N = input.size();
 
-    //complex<long double> output[inputlength]; //{{real1, imag1},{real2, imag2},........} (array size have to be constant)
-    
-    long double *outputReal = new long double[inputlength]; //define real part of the fourier transform 
-    long double *outputImag = new long double[inputlength]; //define real part of the fourier transform 
+    complex<double> sum;
+    vector<complex<double>> output;
+    output.reserve(N);
 
-    // DFT function
-    for(int k = 0; k<N; k++)
+    for(int k=0; k<N; k++)
     {
-        //output[k] = {0,0};
-        
-        outputReal[k] = 0;
-        outputImag[k] = 0;
-
-        for(int n = 0; n<N; n++)
+        sum = complex<double>(0,0);
+        for(int n=0; n<N; n++)
         {
-            long double angel = (2*pi*k*n)/N;
-            long double CosA = cos(angel);
-            long double SinA = sin(angel);
-
-            //output[k] = {inputArray[k]*CosA, inputArray[k]*SinA};
-            
-            outputReal[k] += inputArray[n]*CosA;
-            outputImag[k] += inputArray[n]*SinA;
+            double angel = (2*pi*k*n)/N;
+            double CosA = cos(angel);
+            double SinA = sin(angel);
+            complex<double>temp(CosA, -SinA);
+            sum += input[n] * temp;
         }
+        output.push_back(sum);
     }
-    // End of DFT Function
+    return output;
+}
+
+main()
+{
+    int N = 1000;
+    vector<complex<double>> signal;
+    signal.reserve(N);
+
+    for(int x=0; x<N; ++x)
+    {
+        auto temp = complex<double> (cos((2*pi/(1.0*N))*(x*1.0)), 0.0);
+        signal.push_back(temp);
+    }
+    vector<complex<double>> FreqD = dft(signal); 
+    for(int i=0; i<10; i++)
+    {
+        cout<<FreqD[i].real()<<"   "<<"j"<<FreqD[i].imag()<<endl;
+    }
 
 }
+
