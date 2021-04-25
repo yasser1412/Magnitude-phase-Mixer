@@ -93,19 +93,19 @@ main( int argc, char *argv[] )
     if (operation == 1)
     {
     vector<complex<double>> FreqD = dft(signal); 
-    for(int i=0; i<N; i++)
-    {
-        cout<<FreqD[i].real()<<" + "<<"j"<<FreqD[i].imag()<<endl;
-    }
+    // for(int i=0; i<N; i++)
+    // {
+    //     cout<<FreqD[i].real()<<" + "<<"j"<<FreqD[i].imag()<<endl;
+    // }
     }
     
     if (operation == 2)
     {
     vector<complex<double>> FreqD1 = fft(signal); 
-    for(int i=0; i<N; i++)
-    {
-        cout<<FreqD1[i].real()<<" + "<<"j"<<FreqD1[i].imag()<<endl;
-    }
+    // for(int i=0; i<N; i++)
+    // {
+    //     cout<<FreqD1[i].real()<<" + "<<"j"<<FreqD1[i].imag()<<endl;
+    // }
     }
 
 }
