@@ -9,187 +9,547 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>986</width>
-    <height>612</height>
+    <width>1173</width>
+    <height>684</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>0</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Image 1</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Image 2</string>
-    </property>
-   </widget>
-   <widget class="ImageView" name="imageView">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>261</width>
-      <height>251</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="ImageView" name="imageView_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>310</y>
-      <width>261</width>
-      <height>251</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="ImageView" name="imageView_1_edit">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>30</y>
-      <width>261</width>
-      <height>251</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="ImageView" name="imageView_2_edit">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>311</y>
-      <width>261</width>
-      <height>251</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
+      <x>10</x>
       <y>10</y>
-      <width>201</width>
-      <height>22</height>
+      <width>561</width>
+      <height>301</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
-    <property name="toolTip">
-     <string>Image Components</string>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
     </property>
-    <item>
-     <property name="text">
-      <string>Choose FT Components</string>
+    <widget class="ImageView" name="imageView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>FT Magnitude</string>
+    </widget>
+    <widget class="ImageView" name="imageView_1_edit">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>FT Phase</string>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>0</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>FT Real Component</string>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
-    </item>
-    <item>
      <property name="text">
-      <string>FT Imaginary Component</string>
+      <string>Image 1</string>
      </property>
-    </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>10</y>
+       <width>201</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Image Components</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Choose FT Components</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Phase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Real Component</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Imaginary Component</string>
+      </property>
+     </item>
+    </widget>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>290</y>
-      <width>201</width>
-      <height>22</height>
+      <x>10</x>
+      <y>330</y>
+      <width>561</width>
+      <height>301</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
-    <property name="toolTip">
-     <string>Image Components</string>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
     </property>
-    <item>
-     <property name="text">
-      <string>Choose FT Components</string>
+    <widget class="ImageView" name="imageView_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>FT Magnitude</string>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>FT Phase</string>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
-    </item>
-    <item>
      <property name="text">
-      <string>FT Real Component</string>
+      <string>Image 2</string>
      </property>
-    </item>
-    <item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>10</y>
+       <width>201</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Image Components</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Choose FT Components</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Phase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Real Component</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Imaginary Component</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="ImageView" name="imageView_2_edit">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>561</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>FT Imaginary Component</string>
+      <string>Mixer Output To:</string>
      </property>
-    </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>10</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Output1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Output2</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Component 1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Component 2</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>90</y>
+       <width>271</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider_2">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>200</y>
+       <width>271</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_6">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>130</y>
+       <width>271</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_7">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>240</y>
+       <width>271</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_4">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>90</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Image Components</string>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Phase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Real</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Imaginary</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_5">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>200</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Image Components</string>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Phase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Real Component</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FT Imaginary Component</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>330</y>
+      <width>561</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <widget class="ImageView" name="output_1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="ImageView" name="output_2">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>261</width>
+       <height>251</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Ourput 1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Output 2</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -197,7 +557,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>986</width>
+     <width>1173</width>
      <height>21</height>
     </rect>
    </property>

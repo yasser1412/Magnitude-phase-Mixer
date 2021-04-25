@@ -43,7 +43,7 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
 
 # list of everything
         self.images=[None,None]
-        self.img_views=[self.imageView,self.imageView_2,self.imageView_1_edit,self.imageView_2_edit]
+        self.img_views=[self.imageView,self.imageView_2,self.imageView_1_edit,self.imageView_2_edit,self.output_1,self.output_2]
         self.combos=[self.comboBox,self.comboBox_2]
         # combo_components=['FT Magnitude','FT Phase','FT Real Component','FT Imaginary Component']
 # hide
@@ -103,7 +103,7 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
     def draw_img(self,idx,image):
         self.img_views[idx].show()
         self.img_views[idx].setImage(image)
-        
+
         #error when change combo before upload photo
     def img_components(self): 
         self.dft = np.fft.fft2(self.images[self.img_idx])
