@@ -5,29 +5,38 @@
 using namespace std;
 #define pi 3.14159265359
 
-// vector<complex<double>> fft(vector<complex<double>> input)
-// {
-//     int N = input.size();
-//     vector<complex<double>> inputcopy = input;
+  vector<complex<double>> fft(vector<complex<double>> input)
+ {
+     int N = input.size();
+     vector<complex<double>> inputcopy = input;
 
-//     if(N==1) {return inputcopy;}
+     if(N==1) {return inputcopy;}
 
-//     int M = N/2;
+     int M = N/2;
 
-//     vector<complex<double>> Xeven(M,0);
-//     vector<complex<double>> Xodd(M,0);
+     vector<complex<double>> Xeven(M,0);
+     vector<complex<double>> Xodd(M,0);
 
-//     for(int i=0; i<M; i++)
-//     {
-//         Xeven[i] = input[2*i];
-//         Xodd[i] = input[2*i+1]; 
-//     }
+     for(int i=0; i<M; i++)
+     {
+         Xeven[i] = input[2*i];
+         Xodd[i] = input[2*i+1]; 
+     }
 
-//     vector<complex<double>> Feven(M,0);
-//     Feven = fft(Xeven);
-//     vector<complex<double>> Fodd(M,0);
-//     Fodd = fft(Xodd);
-// }
+     vector<complex<double>> Feven(M,0);
+     Feven = fft(Xeven);
+     vector<complex<double>> Fodd(M,0);
+     Fodd = fft(Xodd);
+
+     vector<complex<double>> freqbins(N,0);
+     for(int k=0; k!=N/2; k++)
+     {
+         complex<double> cmplxexponential = polar (1.0, -2*pi*k/N)*Fodd[k];
+         freqbins[k] = Feven[k]+cmplxexponential;
+         freqbins[k+N/2] = Feven[k]-cmplxexponential;
+     }
+     return freqbins;
+ } 
 
 vector<complex<double>> dft(vector<complex<double>> input)
 {
@@ -42,9 +51,9 @@ vector<complex<double>> dft(vector<complex<double>> input)
         sum = complex<double>(0,0);
         for(int n=0; n<N; n++)
         {
-            double angel = (2*pi*k*n)/N;
-            double CosA = cos(angel);
-            double SinA = sin(angel);
+            double angle = (2*pi*k*n)/N;
+            double CosA = cos(angle);
+            double SinA = sin(angle);
             complex<double>temp(CosA, -SinA);
             sum += input[n] * temp;
         }
@@ -74,6 +83,11 @@ main( int argc, char *argv[] )
     {
         cout<<FreqD[i].real()<<" + "<<"j"<<FreqD[i].imag()<<endl;
     }
+        cout<<"====================="<<endl;
+    vector<complex<double>> FreqD1 = fft(signal); 
+     for(int i=0; i<10; i++)
+    {
+        cout<<FreqD1[i].real()<<" + "<<"j"<<FreqD1[i].imag()<<endl;
+    }
 
 }
-
