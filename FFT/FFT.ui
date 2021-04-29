@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>600</height>
+    <width>1096</width>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="dftBtn">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
+      <x>50</x>
+      <y>50</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QPushButton" name="fftBtn">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>20</y>
+      <x>390</x>
+      <y>50</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -45,16 +45,16 @@
      <rect>
       <x>20</x>
       <y>130</y>
-      <width>611</width>
-      <height>291</height>
+      <width>521</width>
+      <height>221</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="clrBtn">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>460</y>
+      <x>200</x>
+      <y>370</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -63,13 +63,36 @@
      <string>Clear Graph</string>
     </property>
    </widget>
+   <widget class="PlotWidget" name="plotHere_2">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>130</y>
+      <width>521</width>
+      <height>221</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="errorBtn">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>50</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Error</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>647</width>
+     <width>1096</width>
      <height>21</height>
     </rect>
    </property>

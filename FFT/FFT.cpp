@@ -10,6 +10,47 @@
 using namespace std;
 #define pi 3.14159265359
 
+extern "C"
+{
+double calculate_errors(int N);
+vector<complex<double>> create_array(int N);
+vector<complex<double>> fft(vector<complex<double>> input);
+vector<complex<double>> dft(vector<complex<double>> input);
+}
+
+
+double calculate_errors(int N)
+{
+    vector<complex<double>> signal = create_array(N);
+    vector<complex<double>> FreqD = dft(signal);
+    vector<complex<double>> FreqD1 = fft(signal);
+    double real_error = 0;
+    double imag_error = 0;
+    
+    for (int i = 0; i<N; i++)
+    {
+        real_error += pow((FreqD[i].real() - FreqD1[i].real()), 2.0);
+        
+        imag_error += pow((FreqD[i].imag() - FreqD1[i].imag()), 2.0);
+    }
+    return real_error , imag_error;
+}
+
+vector<complex<double>> create_array(int N)
+{   
+    vector<complex<double>> signal;
+    signal.reserve(N);
+    double phase = 0.0;
+
+    for(int x=0; x<N; ++x)
+    {
+        auto temp = complex<double> ( cos((2*pi/(1.0*N))*(x*1.0) + phase) , 0.0 );
+        signal.push_back(temp);
+    }
+    return signal;
+}
+
+
 vector<complex<double>> fft(vector<complex<double>> input)
 {
     int N = input.size();
@@ -79,33 +120,16 @@ main( int argc, char *argv[] )
     
     int operation = atoi(argv[2]);
     
-    double phase = 0.0;
-    
-    vector<complex<double>> signal;
-    signal.reserve(N);
-    
-    for(int x=0; x<N; ++x)
-    {
-        auto temp = complex<double> ( cos((2*pi/(1.0*N))*(x*1.0) + phase) , 0.0 );
-        signal.push_back(temp);
-    }
-    
+    vector<complex<double>> signal = create_array(N);
+
     if (operation == 1)
     {
     vector<complex<double>> FreqD = dft(signal); 
-    // for(int i=0; i<N; i++)
-    // {
-    //     cout<<FreqD[i].real()<<" + "<<"j"<<FreqD[i].imag()<<endl;
-    // }
     }
     
     if (operation == 2)
     {
     vector<complex<double>> FreqD1 = fft(signal); 
-    // for(int i=0; i<N; i++)
-    // {
-    //     cout<<FreqD1[i].real()<<" + "<<"j"<<FreqD1[i].imag()<<endl;
-    // }
     }
 
 }
