@@ -21,8 +21,7 @@ class MainApp(QMainWindow,MAIN_WINDOW):
     dftTimeArray  = [0,0,0,0,0,0,0,0,0,0]
     fftTimeArray = [0,0,0,0,0,0,0,0,0,0]
     Narray = [2 , 4 , 8 , 16 , 32 , 64 , 128 , 256 , 512 , 1024]
-    realErrorArray = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-    imagErrorArray = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    ErrorArray = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
     def __init__(self):
         super(MainApp,self).__init__()
         QMainWindow.__init__(self)
@@ -35,7 +34,7 @@ class MainApp(QMainWindow,MAIN_WINDOW):
         
     def call_cpp(self, index):
         
-        sp.call(["g++","FFT.cpp"])
+        #sp.call(["g++","FFT.cpp"])
         size = self.Narray.__len__()
         
         for i in range (size):
@@ -68,11 +67,10 @@ class MainApp(QMainWindow,MAIN_WINDOW):
         size = self.Narray.__len__()
         
         for i in range (size):
-            self.realErrorArray[i] , self.imagErrorArray[i] = library.calculate_errors(self.Narray[i])
+            self.ErrorArray[i] = library.calculate_errors(self.Narray[i])
         
         self.plotHere_2.plotItem.addLegend(size=(1, 2))
-        self.plotHere_2.plot(self.Narray , self.realErrorArray , name = "real errors")
-        self.plotHere_2.plot(self.Narray , self.imagErrorArray , name = "imag errors")
+        self.plotHere_2.plot(self.Narray , self.ErrorArray , name = "error graph", pen="r")
         
 if __name__=='__main__':
     app = QApplication(sys.argv)

@@ -24,16 +24,14 @@ double calculate_errors(int N)
     vector<complex<double>> signal = create_array(N);
     vector<complex<double>> FreqD = dft(signal);
     vector<complex<double>> FreqD1 = fft(signal);
-    double real_error = 0;
-    double imag_error = 0;
+    double error = 0;
+
     
     for (int i = 0; i<N; i++)
     {
-        real_error += pow((FreqD[i].real() - FreqD1[i].real()), 2.0);
-        
-        imag_error += pow((FreqD[i].imag() - FreqD1[i].imag()), 2.0);
+        error += (FreqD[i].real() - FreqD1[i].real())*(FreqD[i].imag() - FreqD1[i].imag());
     }
-    return real_error , imag_error;
+    return error;
 }
 
 vector<complex<double>> create_array(int N)
