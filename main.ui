@@ -278,11 +278,6 @@
      </property>
      <item>
       <property name="text">
-       <string/>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string>Output1</string>
       </property>
      </item>
@@ -334,7 +329,7 @@
       <string>Component 2</string>
      </property>
     </widget>
-    <widget class="QSlider" name="horizontalSlider">
+    <widget class="QSlider" name="slider">
      <property name="geometry">
       <rect>
        <x>280</x>
@@ -343,11 +338,17 @@
        <height>22</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QSlider" name="horizontalSlider_2">
+    <widget class="QSlider" name="slider_2">
      <property name="geometry">
       <rect>
        <x>280</x>
@@ -355,6 +356,12 @@
        <width>271</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -369,26 +376,6 @@
        <height>22</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_7">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>240</y>
-       <width>271</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox_4">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>90</y>
-       <width>121</width>
-       <height>22</height>
-      </rect>
-     </property>
      <property name="font">
       <font>
        <family>Arial</family>
@@ -396,9 +383,6 @@
        <weight>75</weight>
        <bold>true</bold>
       </font>
-     </property>
-     <property name="toolTip">
-      <string>Image Components</string>
      </property>
      <item>
       <property name="text">
@@ -425,6 +409,47 @@
        <string>Imaginary</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Uniform Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Uniform Phase</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_4">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>90</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Image Components</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Image1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Image2</string>
+      </property>
+     </item>
     </widget>
     <widget class="QComboBox" name="comboBox_5">
      <property name="geometry">
@@ -448,27 +473,65 @@
      </property>
      <item>
       <property name="text">
+       <string>Image1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Image2</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_7">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>240</y>
+       <width>271</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
        <string/>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>FT Magnitude</string>
+       <string>Magnitude</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>FT Phase</string>
+       <string>Phase</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>FT Real Component</string>
+       <string>Real</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>FT Imaginary Component</string>
+       <string>Imaginary</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Uniform Magnitude</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Uniform Phase</string>
       </property>
      </item>
     </widget>
