@@ -24,44 +24,69 @@ class ImageModel():
 
         self.uniform_magnitude = np.ones(self.image.shape)
         self.uniform_phase = np.zeros(self.image.shape)
-### lsa h a3ml el modes
-    def mix(self, image2:'Image', mag_real_ratio, ph_img_ratio):
+
+    def mix(self, image2:'Image', mag_real_ratio, ph_img_ratio, mode):
         w1 = mag_real_ratio
         w2 = ph_img_ratio        
         mixInverse = None
-        # m = 1 
-
-        # if self.comboBox_6.currentText() == "Magnitude" and self.comboBox_7.currentText() == "Phase" or self.comboBox_7.currentText() == "Magnitude" and self.comboBox_6.currentText() == "Phase":
-        # if m == 1:
-        print("Mixing Magnitude and Phase")
-        
-        M1 = self.magnitude
-        M2 = image2.magnitude
-
-        P1 = self.phase
-        P2 = image2.phase
-
-        magnitudeMix = w1*M1 + (1-w1)*M2
-        phaseMix = (1-w2)*P1 + w2*P2
-
-        combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
-        mixInverse = np.real(np.fft.ifft2(combined))
-        
-        # elif self.comboBox_6.currentText() == "Real" and self.comboBox_7.currentText() == "Imaginary" or self.comboBox_7.currentText() == "Real" and self.comboBox_6.currentText() == "Imaginary":
-        # elif m == 0:
-        #     print("Mixing Real and Imaginary")
+#repeatition
+        if mode == "magnitudeandphase" or mode == "phaseandmagnitude":
+            print("Mixing Magnitude and Phase")
             
-        #     R1 = self.real
-        #     R2 = image2.real
+            M1 = self.magnitude
+            M2 = image2.magnitude
 
-        #     I1 = self.imaginary
-        #     I2 = image2.imaginary
+            P1 = self.phase
+            P2 = image2.phase
 
-        #     realMix = w1*R1 + (1-w1)*R2
-        #     imaginaryMix = (1-w2)*I1 + w2*I2
+            magnitudeMix = w1*M1 + (1-w1)*M2
+            phaseMix = (1-w2)*P1 + w2*P2
 
-        #     combined = realMix + imaginaryMix * 1j
-        #     mixInverse = np.real(np.fft.ifft2(combined))
+            combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            mixInverse = np.real(np.fft.ifft2(combined))
+            
+        elif mode == "realandimaginary" or mode == "imaginaryandreal":
+            print("Mixing Real and Imaginary")
+
+            R1 = self.real
+            R2 = image2.real
+
+            I1 = self.imaginary
+            I2 = image2.imaginary
+
+            realMix = w1*R1 + (1-w1)*R2
+            imaginaryMix = (1-w2)*I1 + w2*I2
+
+            combined = realMix + imaginaryMix * 1j
+            mixInverse = np.real(np.fft.ifft2(combined))
+        
+        elif mode == "magnitudeanduniform phase" or mode == "uniform phaseandmagnitude":
+            print("Mixing Magnitude and Uniform Phase")
+            # M1 = self.magnitude
+            # M2 = image2.magnitude
+
+            # P1 = self.uniform_phase
+            # P2 = image2.phase
+
+            # magnitudeMix = w1*M1 + (1-w1)*M2
+            # phaseMix = (1-w2)*P1 + w2*P2
+
+            # combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            # mixInverse = np.real(np.fft.ifft2(combined))
+
+        elif mode == "phaseanduniform magnitude" or mode == "uniform magnitudeandphase":
+            print("Mixing Phase and Uniform Magnitude")
+            # M1 = self.magnitude
+            # M2 = image2.magnitude
+
+            # P1 = self.uniform_phase
+            # P2 = image2.phase
+
+            # magnitudeMix = w1*M1 + (1-w1)*M2
+            # phaseMix = (1-w2)*P1 + w2*P2
+
+            # combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            # mixInverse = np.real(np.fft.ifft2(combined))
         
         return abs(mixInverse)
 

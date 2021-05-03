@@ -95,7 +95,7 @@
      </property>
      <item>
       <property name="text">
-       <string>Choose FT Components</string>
+       <string>Choose FT Component</string>
       </property>
      </item>
      <item>
@@ -188,7 +188,7 @@
      </property>
      <item>
       <property name="text">
-       <string>Choose FT Components</string>
+       <string>Choose FT Component</string>
       </property>
      </item>
      <item>
@@ -386,7 +386,7 @@
      </property>
      <item>
       <property name="text">
-       <string/>
+       <string>Choose FT Component</string>
       </property>
      </item>
      <item>
@@ -501,7 +501,7 @@
      </property>
      <item>
       <property name="text">
-       <string/>
+       <string>Choose FT Component</string>
       </property>
      </item>
      <item>
