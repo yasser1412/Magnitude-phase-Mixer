@@ -10,22 +10,22 @@
 using namespace std;
 #define pi 3.14159265359
 
+// functions connected to python
 extern "C"
 {
 double calculate_errors(int N);
 vector<complex<double>> create_array(int N);
 vector<complex<double>> fft(vector<complex<double>> input);
-vector<complex<double>> dft(vector<complex<double>> input);
+vector<complex<double>> ft(vector<complex<double>> input);
 }
 
-
+// calculate errors between ft and fft
 double calculate_errors(int N)
 {
     vector<complex<double>> signal = create_array(N);
-    vector<complex<double>> FreqD = dft(signal);
+    vector<complex<double>> FreqD = ft(signal);
     vector<complex<double>> FreqD1 = fft(signal);
     double error = 0;
-
     
     for (int i = 0; i<N; i++)
     {
@@ -34,12 +34,13 @@ double calculate_errors(int N)
     return error;
 }
 
+// create a cosine data vector with size N
 vector<complex<double>> create_array(int N)
 {   
     vector<complex<double>> signal;
     signal.reserve(N);
     double phase = 0.0;
-
+    
     for(int x=0; x<N; ++x)
     {
         auto temp = complex<double> ( cos((2*pi/(1.0*N))*(x*1.0) + phase) , 0.0 );
@@ -48,52 +49,54 @@ vector<complex<double>> create_array(int N)
     return signal;
 }
 
-
+// Calculate FFT
 vector<complex<double>> fft(vector<complex<double>> input)
 {
     int N = input.size();
     vector<complex<double>> copy = input;
-    if(N==1) {return copy;}
+    // stop on reaching enough spliting
+    if(N<=1) {return copy;}
     
     int M = N/2;
     
     vector<complex<double>> Xeven(M,0);
     vector<complex<double>> Xodd(M,0);
-    
+    // split even and odd
     for(int i=0; i<M; i++)
     {
         Xeven[i] = input[2*i];
         Xodd[i] = input[2*i+1]; 
     }
+
+    // recursive part 
     vector<complex<double>> Feven(M,0);
     Feven = fft(Xeven);
-    
     vector<complex<double>> Fodd(M,0);
     Fodd = fft(Xodd);
-
-    vector<complex<double>> freqbins(N,0);
-    for(int k=0; k!=N/2; k++)
+    
+    // calculate DFT
+    vector<complex<double>> fftArray(N,0);
+    for(int k=0; k<N/2; k++)
     {   
         double angel = (-2*pi*k)/N;
         double CosA = cos(angel);
         double SinA = sin(angel);
         complex<double>temp(CosA, SinA);
         
-        complex<double> cmplxexponential = temp*Fodd[k];
-        
-        freqbins[k] = Feven[k]+cmplxexponential;
-        freqbins[k+N/2] = Feven[k]-cmplxexponential;
+        fftArray[k] = Feven[k]+ temp*Fodd[k];
+        fftArray[k+N/2] = Feven[k]- temp*Fodd[k];
     }
-    return freqbins;
+    return fftArray;
 }
 
-vector<complex<double>> dft(vector<complex<double>> input)
+// Calculate FT
+vector<complex<double>> ft(vector<complex<double>> input)
 {
     int N = input.size();
     
     complex<double> sum;
-    vector<complex<double>> output;
-    output.reserve(N);
+    vector<complex<double>> dftArray;
+    dftArray.reserve(N);
     
     for(int k=0; k<N; k++)
     {
@@ -107,10 +110,11 @@ vector<complex<double>> dft(vector<complex<double>> input)
             
             sum += input[n] * temp;
         }
-        output.push_back(sum);
+        dftArray.push_back(sum);
     }
-    return output;
+    return dftArray;
 }
+
 
 main( int argc, char *argv[] )
 {
@@ -119,16 +123,15 @@ main( int argc, char *argv[] )
     int operation = atoi(argv[2]);
     
     vector<complex<double>> signal = create_array(N);
-
+    
     if (operation == 1)
     {
-    vector<complex<double>> FreqD = dft(signal); 
+    vector<complex<double>> FreqD = ft(signal); 
     }
     
     if (operation == 2)
     {
     vector<complex<double>> FreqD1 = fft(signal); 
     }
-
 }
 
