@@ -130,6 +130,7 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
             if componentTwo == "phase":
                 mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
             if componentTwo == "uniform phase":
+                self.slider_2.setValue(0)
                 self.slider_2.setEnabled(False)
                 mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
 
@@ -137,6 +138,7 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
             if componentTwo == "magnitude":
                 mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
             elif componentTwo == "uniform magnitude":
+                self.slider_2.setValue(0)
                 self.slider_2.setEnabled(False)
                 mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderOneValue,self.sliderTwoValue, mode)
 
@@ -149,21 +151,24 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
                 mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
 
         elif componentOne == "uniform phase":
+            self.slider.setValue(0)
             self.slider.setEnabled(False)
             if componentTwo == "magnitude":
                 mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
             elif componentOne == "uniform magnitude":
+                self.slider.setValue(0)
                 self.slider.setEnabled(False)
                 mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
 
         elif componentOne == "uniform magnitude":
+            self.slider.setValue(0)
             self.slider.setEnabled(False)
             if componentTwo == "phase":
                 mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
             elif componentTwo == "uniform phase":
+                self.slider_2.setValue(0)
                 self.slider_2.setEnabled(False)
                 mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
-        
         
         self.draw_img(output_idx+4,mixOutput)
         logger.info(f"Output{output_idx+1} was generated")

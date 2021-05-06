@@ -70,30 +70,30 @@ class ImageModel():
             P1 = self.phase
             P2 = image2.uniform_phase
             
-            w2=0
-            magnitudeMix = w1*M1 + (1-w1)*M2
-            phaseMix = (1-w2)*P1 + w2*P2
+            #w2=0
+            magnitudeMix = w2*M1 + (1-w2)*M2
+            #phaseMix = (1-w1)*P1 + w1*P2
 
-            combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            combined = np.multiply(magnitudeMix, np.exp(1j * P2))
             mixInverse = np.real(np.fft.ifft2(combined))
 
-        elif mode == "uniform phaseandmagnitude":
+        elif mode == "uniform phaseandmagnitude" :
             print("Mixing Uniform Phase and Magnitude")
 
+            
             M1 = self.magnitude
             M2 = image2.magnitude
-
             P1 = self.uniform_phase
             P2 = image2.phase
             
-            w1=0
+            #w1=0
             magnitudeMix = w1*M1 + (1-w1)*M2
-            phaseMix = (1-w2)*P1 + w2*P2
+            #phaseMix = (1-w2)*P1 + w2*P2
 
-            combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            combined = np.multiply(magnitudeMix, np.exp(1j * P1))
             mixInverse = np.real(np.fft.ifft2(combined))
 
-        elif mode == "uniform magnitudeandphase":
+        elif mode == "uniform magnitudeandphase" :
             print("Mixing Uniform Magnitude and Phase")
             M1 = self.uniform_magnitude
             M2 = image2.magnitude
@@ -101,11 +101,11 @@ class ImageModel():
             P1 = self.phase
             P2 = image2.phase
             
-            w1=0
-            magnitudeMix = w1*M1 + (1-w1)*M2
+            #w1=0
+            #magnitudeMix = w1*M1 + (1-w1)*M2
             phaseMix = (1-w2)*P1 + w2*P2
 
-            combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            combined = np.multiply(M1, np.exp(1j * phaseMix))
             mixInverse = np.real(np.fft.ifft2(combined))
 
         elif mode == "phaseanduniform magnitude":
@@ -116,11 +116,11 @@ class ImageModel():
             P1 = self.phase
             P2 = image2.phase
             
-            w2=0
-            magnitudeMix = w1*M1 + (1-w1)*M2
-            phaseMix = (1-w2)*P1 + w2*P2
+            #w2=0
+            #magnitudeMix = w1*M1 + (1-w1)*M2
+            phaseMix = (1-w1)*P1 + w1*P2
 
-            combined = np.multiply(magnitudeMix, np.exp(1j * phaseMix))
+            combined = np.multiply(M2, np.exp(1j * phaseMix))
             mixInverse = np.real(np.fft.ifft2(combined))
 
         return abs(mixInverse)
