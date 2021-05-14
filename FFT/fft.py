@@ -66,10 +66,11 @@ class MainApp(QMainWindow,MAIN_WINDOW):
         #calculate and draw error between ft and fft outputs
         if (operation == "error"):
             library = ctypes.CDLL("./fourier.so")
+            library.calculate_errors.restype = ctypes.c_double 
+            library.calculate_errors.argtypes  = [ctypes.c_int] 
             
             for i in range (size):
-                self.ErrorArray[i] = library.calculate_errors(self.Narray[i])
-            
+                self.ErrorArray[i] =  library.calculate_errors(self.Narray[i])
             # draw the error with its N
             self.plotHere_2.plot(self.Narray , self.ErrorArray , name = "Error", pen="g")
         

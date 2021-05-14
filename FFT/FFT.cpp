@@ -1,22 +1,22 @@
 // compile first
 // then run using ./FFT (N) (operation)   i.e. ./FFT 16 1
-// operation: 1 for DFT , 2 for FFT
+// operation: 1 for DFT , 2 for FFT , 3 for Error Calculation
 // N have to be a base of 2 (2^1, 2^2, 2^3,......)
 
 #include<iostream>
 #include<math.h>
 #include<complex>
-#include<vector> 
+#include<vector>
 using namespace std;
 #define pi 3.14159265359
 
 // functions connected to python
 extern "C"
 {
-double calculate_errors(int N);
 vector<complex<double>> create_array(int N);
-vector<complex<double>> fft(vector<complex<double>> input);
 vector<complex<double>> ft(vector<complex<double>> input);
+vector<complex<double>> fft(vector<complex<double>> input);
+double calculate_errors(int N);
 }
 
 // calculate errors between ft and fft
@@ -25,12 +25,15 @@ double calculate_errors(int N)
     vector<complex<double>> signal = create_array(N);
     vector<complex<double>> FreqD = ft(signal);
     vector<complex<double>> FreqD1 = fft(signal);
+    double error1 = 0;
+    double error2 = 0;
     double error = 0;
-    
     for (int i = 0; i<N; i++)
     {
-        error += (FreqD[i].real() - FreqD1[i].real())*(FreqD[i].imag() - FreqD1[i].imag());
+        error1 += pow((FreqD[i].real() - FreqD1[i].real()) , 2.0);
+        error2 += pow((FreqD[i].imag() - FreqD1[i].imag()) , 2.0);
     }
+    error = (error1+error2)/2;
     return error;
 }
 
@@ -133,5 +136,11 @@ main( int argc, char *argv[] )
     {
     vector<complex<double>> FreqD1 = fft(signal); 
     }
+    
+    if (operation == 3)
+    {
+    double error = calculate_errors(N); 
+    }
+
 }
 
