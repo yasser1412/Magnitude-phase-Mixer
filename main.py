@@ -126,49 +126,18 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
         self.slider.setEnabled(True)
         self.slider_2.setEnabled(True)
 
-        if componentOne == "magnitude":
-            if componentTwo == "phase":
-                mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
-            if componentTwo == "uniform phase":
-                self.slider_2.setValue(0)
-                self.slider_2.setEnabled(False)
-                mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
+        if ((componentOne == "magnitude" or componentOne == "uniform magnitude") and (componentTwo == "phase" or componentTwo == "uniform phase")) or (componentOne == "real" and componentTwo == "imaginary"):
+            mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
 
-        elif componentOne == "phase":
-            if componentTwo == "magnitude":
-                mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
-            elif componentTwo == "uniform magnitude":
-                self.slider_2.setValue(0)
-                self.slider_2.setEnabled(False)
-                mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderOneValue,self.sliderTwoValue, mode)
-
-        elif componentOne == "real":
-            if componentTwo == "imaginary":
-                mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
-
-        elif componentOne == "imaginary":
-            if componentTwo == "real":
-                mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
-
-        elif componentOne == "uniform phase":
+        elif ((componentOne == "phase" or componentOne == "uniform phase") and (componentTwo == "magnitude" or componentTwo == "uniform magnitude")) or (componentOne == "imaginary" and componentTwo == "real"):
+            mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
+        
+        if componentOne == "uniform phase" or componentOne == "uniform magnitude":
             self.slider.setValue(0)
             self.slider.setEnabled(False)
-            if componentTwo == "magnitude":
-                mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
-            elif componentOne == "uniform magnitude":
-                self.slider.setValue(0)
-                self.slider.setEnabled(False)
-                mixOutput = self.image_models[imgIndex2].mix(self.image_models[imgIndex1], self.sliderTwoValue,self.sliderOneValue, mode)
-
-        elif componentOne == "uniform magnitude":
-            self.slider.setValue(0)
-            self.slider.setEnabled(False)
-            if componentTwo == "phase":
-                mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
-            elif componentTwo == "uniform phase":
-                self.slider_2.setValue(0)
-                self.slider_2.setEnabled(False)
-                mixOutput = self.image_models[imgIndex1].mix(self.image_models[imgIndex2], self.sliderOneValue,self.sliderTwoValue, mode)
+        elif componentTwo == "uniform phase" or componentTwo == "uniform magnitude":
+            self.slider_2.setValue(0)
+            self.slider_2.setEnabled(False)
         
         self.draw_img(output_idx+4,mixOutput)
         logger.info(f"Output{output_idx+1} was generated")

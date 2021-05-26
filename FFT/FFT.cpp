@@ -33,7 +33,7 @@ double calculate_errors(int N)
         error1 += pow((FreqD[i].real() - FreqD1[i].real()) , 2.0);
         error2 += pow((FreqD[i].imag() - FreqD1[i].imag()) , 2.0);
     }
-    error = (error1+error2)/2;
+    error = ((error1/N)+(error2/N))/2;
     return error;
 }
 
