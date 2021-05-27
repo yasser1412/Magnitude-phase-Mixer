@@ -16,7 +16,7 @@ from imageModel import ImageModel
 logging.basicConfig(filename="logFile.log",format='%(asctime)s %(message)s',filemode='w')
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-MAIN_WINDOW,_=loadUiType(path.join(path.dirname(__file__),"main2.ui"))
+MAIN_WINDOW,_=loadUiType(path.join(path.dirname(__file__),"UI.ui"))
 
 
 class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
@@ -115,13 +115,13 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
         imgIndex2 = self.comboBox_5.currentIndex()
         componentOne = self.modes_combos[0].currentText().lower()
         componentTwo = self.modes_combos[1].currentText().lower()
-        combo_2 = self.modes_combos[1].currentText()
+        #combo_2 = self.modes_combos[1].currentText()
         self.sliderOneValue = self.slider.value()/100.0
         self.sliderTwoValue = self.slider_2.value()/100.0
         mixOutput = ...
         output_idx = self.comboBox_3.currentIndex()
         mode = componentOne + str('and') + componentTwo
-        self.adjust_combo_elemnts(componentOne, combo_2)
+        self.adjust_combo_elemnts()
 
         self.slider.setEnabled(True)
         self.slider_2.setEnabled(True)
@@ -142,33 +142,20 @@ class MainApp(QtWidgets.QMainWindow,MAIN_WINDOW):
         self.draw_img(output_idx+4,mixOutput)
         logger.info(f"Output{output_idx+1} was generated")
 
-
-    def adjust_combo_elemnts(self,combo1,combo2):
+    def adjust_combo_elemnts(self):
+        combo2 = self.modes_combos[1].currentText()
         self.modes_combos[1].clear()
         self.modes_combos[1].addItem("Choose FT Component")
-
-        if combo1 == "magnitude":
-            self.modes_combos[1].addItem("Phase")
-            self.modes_combos[1].addItem("Uniform Phase")
-            self.modes_combos[1].setCurrentText(combo2)
-        elif combo1 == "phase":
-            self.modes_combos[1].addItem("Magnitude")
-            self.modes_combos[1].addItem("Uniform Magnitude")
-            self.modes_combos[1].setCurrentText(combo2)
-        elif combo1 == "real":
-            self.modes_combos[1].addItem("Imaginary")
-            self.modes_combos[1].setCurrentText(combo2)
-        elif combo1 == "imaginary":
-            self.modes_combos[1].addItem("Real")
-            self.modes_combos[1].setCurrentText(combo2)
-        elif combo1 == "uniform magnitude":
-            self.modes_combos[1].addItem("Phase")
-            self.modes_combos[1].setCurrentText(combo2)
-        elif combo1 == "uniform phase":
-            self.modes_combos[1].addItem("Magnitude")
-            self.modes_combos[1].setCurrentText(combo2)
+        txt = self.modes_combos[0].currentText().lower()
+        combotxt = {"magnitude": ["Phase","Uniform Phase"],
+                    "phase": ["Magnitude","Uniform Magnitude"],
+                    "real": ["Imaginary"],
+                    "imaginary":["Real"],
+                    "uniform magnitude": ["phase"],
+                    "uniform phase": ["Magnitude"]}
+        self.modes_combos[1].addItems(combotxt[txt])
+        self.modes_combos[1].setCurrentText(combo2)
         logger.info("ComboBoxes was adjusted")
-
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

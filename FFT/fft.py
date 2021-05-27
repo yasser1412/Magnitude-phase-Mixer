@@ -11,15 +11,17 @@ import os
 import subprocess as sp
 import time 
 import ctypes
+import numpy as np
+from scipy.interpolate import make_interp_spline
 
 MAIN_WINDOW,_=loadUiType(path.join(path.dirname(__file__),"FFT.ui"))
 
 class MainApp(QMainWindow,MAIN_WINDOW):
     # intiate lists
-    Narray = [2 , 4 , 8 , 16 , 32 , 64 , 128 , 256 , 512 , 1024]
-    ftTimeArray  = [0,0,0,0,0,0,0,0,0,0]
-    fftTimeArray = [0,0,0,0,0,0,0,0,0,0]
-    ErrorArray = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    Narray = [2 , 4 , 8 , 16 , 32 , 64 , 128 , 256 , 512 , 1024,2048,4096,8192,16384]
+    ftTimeArray  = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    fftTimeArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    ErrorArray = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,0,0]
     
     def __init__(self):
         super(MainApp,self).__init__()
@@ -30,12 +32,16 @@ class MainApp(QMainWindow,MAIN_WINDOW):
         self.fftBtn.clicked.connect(lambda: self.call_cpp("fft"))
         self.errorBtn.clicked.connect(lambda: self.call_cpp("error"))
         self.clrBtn.clicked.connect(lambda: self.plotHere.clear())
+        self.clrBtn.clicked.connect(lambda: self.plotHere_2.clear())
         
         self.plotHere.plotItem.addLegend(size=(1, 2))
+        self.plotHere.plotItem.setTitle("Computation Time")
         self.plotHere.plotItem.setLabel('bottom', "Number of samples")
-        self.plotHere.plotItem.setLabel('left', "Computation time", units = "s")
-        self.plotHere.plotItem.showGrid(True, True, alpha=0.5)
+        self.plotHere.plotItem.setLabel('left', "Time", units = "s")
+        self.plotHere.plotItem.showGrid(True, True, alpha=0.3)
+        self.plotHere.plotItem.setMouseEnabled(x=False,y=True)
         self.plotHere_2.plotItem.addLegend(size=(1, 2))
+        self.plotHere_2.plotItem.setTitle("MSE")
         self.plotHere_2.plotItem.setLabel('left', "Error")
         self.plotHere_2.plotItem.setLabel('bottom', "Number of samples")
         
@@ -55,13 +61,19 @@ class MainApp(QMainWindow,MAIN_WINDOW):
             if (operation == "fft"):
                 start_time = time.time()
                 sp.call("./a "+ str(self.Narray[i])+" 2")
-                self.fftTimeArray[i] = (time.time() - start_time)
-        
+                self.fftTimeArray[i] = ((time.time() - start_time))
+                
+        xnew = np.linspace(min(self.Narray), max(self.Narray), 100)
         # Draw ft,fft execution time with its N
         if (operation == "ft"):
-            self.plotHere.plot(self.Narray, self.ftTimeArray , name = "FT", pen="r" )
+            spl = make_interp_spline(self.Narray, self.ftTimeArray, 3)
+            ynew = spl(xnew)
+            self.plotHere.plot(xnew, ynew , name = "FT . (N^2)", pen="r" )
         if(operation == "fft"):
-            self.plotHere.plot(self.Narray, self.fftTimeArray , name = "FFT", pen="b")
+            spl = make_interp_spline(self.Narray, self.fftTimeArray, 3)
+            ynew = spl(xnew)
+            self.plotHere.plot(xnew, ynew*50 , name = "FFT . (NlogN) (Scaled)", pen="b")
+        self.plotHere.plotItem.getViewBox().enableAutoRange(axis='y')
         
         #calculate and draw error between ft and fft outputs
         if (operation == "error"):
@@ -72,7 +84,9 @@ class MainApp(QMainWindow,MAIN_WINDOW):
             for i in range (size):
                 self.ErrorArray[i] =  library.calculate_errors(self.Narray[i])
             # draw the error with its N
-            self.plotHere_2.plot(self.Narray , self.ErrorArray , name = "Error", pen="g")
+            spl = make_interp_spline(self.Narray, self.ErrorArray, 3)
+            ynew = spl(xnew)
+            self.plotHere_2.plot(xnew , ynew , name = "Error", pen="g")
         
 if __name__=='__main__':
     app = QApplication(sys.argv)

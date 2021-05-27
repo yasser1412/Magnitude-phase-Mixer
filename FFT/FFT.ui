@@ -26,6 +26,9 @@
     <property name="text">
      <string>Draw DFT</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+D</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="fftBtn">
     <property name="geometry">
@@ -38,6 +41,9 @@
     </property>
     <property name="text">
      <string>Draw FFT</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+F</string>
     </property>
    </widget>
    <widget class="PlotWidget" name="plotHere">
@@ -53,14 +59,17 @@
    <widget class="QPushButton" name="clrBtn">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>370</y>
+      <x>490</x>
+      <y>400</y>
       <width>111</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Clear Graph</string>
+     <string>Clear</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+C</string>
     </property>
    </widget>
    <widget class="PlotWidget" name="plotHere_2">
@@ -84,6 +93,9 @@
     </property>
     <property name="text">
      <string>Draw Error</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+E</string>
     </property>
    </widget>
   </widget>
