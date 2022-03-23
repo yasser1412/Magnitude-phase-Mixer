@@ -20,4 +20,7 @@ After we get the images components we shall mix them up together using the one c
 ![img](./results/mix1.PNG)
 ![img](./results/mix2.PNG)
 
+# DFT vs FFT
+A piece of code is written to implement Fast Fourier Tranform and Normal Fourier Tranform in C++ and called in Python to compare the speed of excuation between the two Fourier methods.
+![img](./FFT/DFTvsFFT.PNG)
 
